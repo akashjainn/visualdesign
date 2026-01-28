@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Detailed analysis of intentionally bad design">
+    <title>Design Detail - Bad Design Portfolio</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+</head>
+<body class="detail-page">
+    <!-- Header -->
+    <header class="site-header">
+        <div class="container">
+            <nav class="breadcrumb">
+                <a href="index.html" class="back-link">← Back to Gallery</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-section" id="heroSection">
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title" id="designTitle">Loading...</h1>
+                <p class="hero-teaser" id="designTeaser"></p>
+            </div>
+            <div class="hero-image-wrapper">
+                <img src="" alt="" id="heroImage" class="hero-image">
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="detail-content">
+        <div class="container">
+            <!-- Why This is Bad Section -->
+            <section class="analysis-section">
+                <h2 class="section-title">Why This Design Fails</h2>
+                <div class="analysis-content" id="analysisContent">
+                    <!-- Dynamic content loaded via JS -->
+                </div>
+            </section>
+
+            <!-- Process Section -->
+            <section class="process-section">
+                <h2 class="section-title">Design Process</h2>
+                <p class="process-intro">Visual documentation of the creative development</p>
+                <div class="process-grid" id="processGrid">
+                    <!-- Dynamic content loaded via JS -->
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="container">
+            <p>&copy; 2026 Bad Design Portfolio</p>
+        </div>
+    </footer>
+
+    <!-- Lightbox -->
+    <div class="lightbox" id="lightbox">
+        <button class="lightbox-close" id="lightboxClose" aria-label="Close lightbox">&times;</button>
+        <div class="lightbox-content">
+            <img src="" alt="" id="lightboxImage">
+        </div>
+    </div>
+
+    <script src="js/data.js"></script>
+    <script src="js/detail.js"></script>
+</body>
+</html>
