@@ -3,104 +3,291 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Visual Design Projects</title>
+    <meta name="description" content="Visual design portfolio featuring critical design analysis and poster remixes">
+    <title>Visual Design Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
     <style>
+        /* ===================================
+           CSS RESET & BASE STYLES
+           =================================== */
+        
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
         
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            padding: 20px;
+        :root {
+            /* Color Palette */
+            --color-bg: #fafafa;
+            --color-surface: #ffffff;
+            --color-text: #1a1a1a;
+            --color-text-secondary: #666666;
+            --color-accent: #2a2a2a;
+            --color-border: #e0e0e0;
+            --color-hover: #f5f5f5;
+            
+            /* Typography */
+            --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            --font-serif: 'Playfair Display', Georgia, serif;
+            
+            /* Spacing */
+            --spacing-xs: 0.5rem;
+            --spacing-sm: 1rem;
+            --spacing-md: 2rem;
+            --spacing-lg: 4rem;
+            --spacing-xl: 6rem;
+            
+            /* Transitions */
+            --transition-fast: 200ms cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-base: 300ms cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-slow: 500ms cubic-bezier(0.4, 0, 0.2, 1);
         }
+        
+        html {
+            font-size: 16px;
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            font-family: var(--font-sans);
+            font-weight: 400;
+            line-height: 1.6;
+            color: var(--color-text);
+            background-color: var(--color-bg);
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        a {
+            color: inherit;
+            text-decoration: none;
+            transition: opacity var(--transition-fast);
+        }
+        
+        a:hover {
+            opacity: 0.7;
+        }
+        
+        a:focus-visible {
+            outline: 2px solid var(--color-accent);
+            outline-offset: 4px;
+        }
+        
+        /* ===================================
+           LAYOUT UTILITIES
+           =================================== */
         
         .container {
-            max-width: 800px;
             width: 100%;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 var(--spacing-md);
         }
         
-        h1 {
-            color: white;
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 var(--spacing-sm);
+            }
+        }
+        
+        /* ===================================
+           HEADER
+           =================================== */
+        
+        .site-header {
+            padding: var(--spacing-xl) 0 var(--spacing-lg);
             text-align: center;
-            font-size: 3rem;
-            margin-bottom: 3rem;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+            border-bottom: 1px solid var(--color-border);
+            background-color: var(--color-surface);
         }
         
-        .projects {
+        .site-title {
+            font-family: var(--font-serif);
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: var(--spacing-xs);
+        }
+        
+        .site-subtitle {
+            font-size: 1.125rem;
+            color: var(--color-text-secondary);
+            font-weight: 300;
+            letter-spacing: 0.02em;
+        }
+        
+        /* ===================================
+           MAIN CONTENT
+           =================================== */
+        
+        .main-content {
+            padding: var(--spacing-xl) 0;
+        }
+        
+        /* ===================================
+           GALLERY GRID
+           =================================== */
+        
+        .gallery-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: var(--spacing-lg);
+            margin-bottom: var(--spacing-xl);
         }
         
-        .project-card {
-            background: white;
-            border-radius: 12px;
-            padding: 2rem;
-            text-decoration: none;
-            color: #333;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-        }
-        
-        .project-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
-        }
-        
-        .project-card h2 {
-            font-size: 1.5rem;
-            margin-bottom: 0.5rem;
-            color: #667eea;
-        }
-        
-        .project-card p {
-            color: #666;
-            line-height: 1.6;
-        }
-        
-        .arrow {
-            display: inline-block;
-            margin-left: 0.5rem;
-            transition: transform 0.3s ease;
-        }
-        
-        .project-card:hover .arrow {
-            transform: translateX(5px);
-        }
-        
-        @media (max-width: 600px) {
-            h1 {
-                font-size: 2rem;
-                margin-bottom: 2rem;
-            }
-            
-            .projects {
+        @media (max-width: 768px) {
+            .gallery-grid {
                 grid-template-columns: 1fr;
+                gap: var(--spacing-md);
             }
+        }
+        
+        .gallery-card {
+            background: var(--color-surface);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+            transition: transform var(--transition-base), box-shadow var(--transition-base);
+        }
+        
+        .gallery-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+            opacity: 1;
+        }
+        
+        .gallery-card:focus-within {
+            outline: 2px solid var(--color-accent);
+            outline-offset: 4px;
+        }
+        
+        .gallery-image-wrapper {
+            position: relative;
+            width: 100%;
+            padding-top: 141.4%; /* A4 ratio */
+            overflow: hidden;
+            background-color: var(--color-hover);
+        }
+        
+        .gallery-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform var(--transition-slow);
+        }
+        
+        .gallery-card:hover .gallery-image {
+            transform: scale(1.05);
+        }
+        
+        .gallery-info {
+            padding: var(--spacing-md);
+        }
+        
+        .gallery-title {
+            font-family: var(--font-serif);
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: var(--spacing-xs);
+        }
+        
+        .gallery-teaser {
+            font-size: 0.9375rem;
+            color: var(--color-text-secondary);
+            line-height: 1.6;
+            margin-bottom: var(--spacing-sm);
+        }
+        
+        .gallery-link {
+            display: inline-block;
+            font-size: 0.875rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            padding-top: var(--spacing-xs);
+            border-top: 1px solid var(--color-border);
+            width: 100%;
+            transition: color var(--transition-fast);
+        }
+        
+        .gallery-card:hover .gallery-link {
+            color: var(--color-accent);
+        }
+        
+        /* ===================================
+           FOOTER
+           =================================== */
+        
+        .site-footer {
+            padding: var(--spacing-lg) 0;
+            text-align: center;
+            border-top: 1px solid var(--color-border);
+            background-color: var(--color-surface);
+        }
+        
+        .site-footer p {
+            font-size: 0.875rem;
+            color: var(--color-text-secondary);
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Visual Design Projects</h1>
-        <div class="projects">
-            <a href="bad design/" class="project-card">
-                <h2>Bad Design Gallery <span class="arrow">→</span></h2>
-                <p>An interactive exploration of poor design choices and their implications in user experience.</p>
-            </a>
-            <a href="remixed poster/" class="project-card">
-                <h2>Remixed Poster <span class="arrow">→</span></h2>
-                <p>A creative reimagining of classic poster designs with modern interactive elements.</p>
-            </a>
+    <!-- Header -->
+    <header class="site-header">
+        <div class="container">
+            <h1 class="site-title">Visual Design Portfolio</h1>
+            <p class="site-subtitle">Exploring design principles through critical analysis and creative practice</p>
         </div>
-    </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <div class="gallery-grid">
+                <!-- Bad Design Gallery Card -->
+                <a href="bad design/" class="gallery-card">
+                    <div class="gallery-image-wrapper">
+                        <img src="bad design/assets/finals/bad design 1.png" alt="Bad Design Gallery" class="gallery-image">
+                    </div>
+                    <div class="gallery-info">
+                        <h2 class="gallery-title">Bad Design Gallery</h2>
+                        <p class="gallery-teaser">A critical analysis of intentional design failures. Exploring the principles of what makes design ineffective through curated examples and detailed breakdowns.</p>
+                        <span class="gallery-link">View Gallery →</span>
+                    </div>
+                </a>
+
+                <!-- Remixed Poster Card -->
+                <a href="remixed poster/assignment-1-chungking.html" class="gallery-card">
+                    <div class="gallery-image-wrapper">
+                        <img src="remixed poster/images/remixed-chungking-express-poster.jpg" alt="Chungking Express Poster Remix" class="gallery-image" onerror="this.parentElement.style.backgroundColor='#2a2a2a'">
+                    </div>
+                    <div class="gallery-info">
+                        <h2 class="gallery-title">Chungking Express Remix</h2>
+                        <p class="gallery-teaser">Deconstructing and reimagining the Chungking Express poster by transforming its romantic aesthetic into a psychological horror interpretation through altered color, texture, and symbolic elements.</p>
+                        <span class="gallery-link">View Project →</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="container">
+            <p>&copy; 2026 Visual Design Portfolio</p>
+        </div>
+    </footer>
 </body>
 </html>
