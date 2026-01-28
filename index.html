@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visual Design Projects</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 800px;
+            width: 100%;
+        }
+        
+        h1 {
+            color: white;
+            text-align: center;
+            font-size: 3rem;
+            margin-bottom: 3rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+        
+        .projects {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .project-card {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            text-decoration: none;
+            color: #333;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+        
+        .project-card h2 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: #667eea;
+        }
+        
+        .project-card p {
+            color: #666;
+            line-height: 1.6;
+        }
+        
+        .arrow {
+            display: inline-block;
+            margin-left: 0.5rem;
+            transition: transform 0.3s ease;
+        }
+        
+        .project-card:hover .arrow {
+            transform: translateX(5px);
+        }
+        
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 2rem;
+                margin-bottom: 2rem;
+            }
+            
+            .projects {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Visual Design Projects</h1>
+        <div class="projects">
+            <a href="bad design/" class="project-card">
+                <h2>Bad Design Gallery <span class="arrow">→</span></h2>
+                <p>An interactive exploration of poor design choices and their implications in user experience.</p>
+            </a>
+            <a href="remixed poster/" class="project-card">
+                <h2>Remixed Poster <span class="arrow">→</span></h2>
+                <p>A creative reimagining of classic poster designs with modern interactive elements.</p>
+            </a>
+        </div>
+    </div>
+</body>
+</html>
