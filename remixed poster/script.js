@@ -65,28 +65,28 @@ function loadTimeline() {
     const timelineSteps = [
         {
             number: 1,
-            title: 'Initial Analysis',
-            description: 'Identified core visual elements in the original poster: composition, color relationships, and focal points.'
+            title: 'Poster Analysis & Deconstruction',
+            description: 'Analyzed the original Chungking Express poster to identify core design elements: color palette (pastels and neons), compositional focal points, typography, human forms, and urban geometric structures. Documented the emotional intent (romance, melancholy, urban connection).'
         },
         {
             number: 2,
-            title: 'Element Extraction',
-            description: 'Isolated key design components and abstracted them into reusable forms for recomposition.'
+            title: 'Element Isolation & Abstraction',
+            description: 'Extracted and isolated key components: facial expressions and forms, flowing curves, neon color accents, geometric urban elements, and typographic treatments. Simplified these elements through abstraction, removing decorative details while retaining structural essence.'
         },
         {
             number: 3,
-            title: 'Aesthetic Exploration',
-            description: 'Experimented with new visual styles and color palettes to establish a distinct aesthetic direction.'
+            title: 'New Aesthetic Development',
+            description: 'Explored an entirely new visual direction—shifting from Wong Kar-wai\'s soft romanticism to a bold geometric minimalism. Experimented with revised color relationships, introduced sharp angular forms, and developed a new typographic hierarchy that reflects a distinctly different emotional tone.'
         },
         {
             number: 4,
-            title: 'Composition Refinement',
-            description: 'Applied compositional principles to arrange elements in a new configuration with different messaging.'
+            title: 'Composition & Layout Restructuring',
+            description: 'Applied compositional principles to arrange extracted elements in a new configuration. Shifted from the original\'s soft, centered composition to asymmetrical balance with dynamic focal points. Repositioned elements to emphasize new narrative aspects and shift the viewer\'s visual journey.'
         },
         {
             number: 5,
-            title: 'Fine-tuning & Polish',
-            description: 'Refined details, adjusted balance and weight, and applied finishing touches to the final remix.'
+            title: 'Refinement, Balance & Polish',
+            description: 'Fine-tuned visual hierarchy through color adjustments, weight distribution, and spatial relationships. Applied Photoshop techniques including layer masking, blending modes, and color grading. Made final adjustments to ensure the new aesthetic and message are clearly distinguished from the original while maintaining recognizable connection to source elements.'
         }
     ];
     
