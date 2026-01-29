@@ -746,12 +746,79 @@ body {
         font-size: 1.8rem;
     }
 
-    .assignments-grid {
-        grid-template-columns: 1fr;
-    }
+/* Creative Process Section */
+.creative-process {
+    padding: calc(var(--spacing-unit) * 4) 0;
+    background: linear-gradient(135deg, #f9f9f9 0%, #ffffff 100%);
 }
 
-@media (max-width: 480px) {
+.creative-process h2 {
+    font-size: 2.5rem;
+    margin-bottom: calc(var(--spacing-unit) * 2);
+    color: var(--primary-color);
+    text-align: center;
+}
+
+.process-documentation {
+    padding: calc(var(--spacing-unit) * 2);
+}
+
+.process-documentation h3 {
+    font-size: 1.5rem;
+    margin-top: calc(var(--spacing-unit) * 3);
+    margin-bottom: calc(var(--spacing-unit) * 1);
+    color: #2c3e50;
+    border-left: 4px solid var(--accent-color);
+    padding-left: var(--spacing-unit);
+}
+
+.process-documentation p {
+    margin-bottom: var(--spacing-unit);
+    color: #555;
+    line-height: 1.8;
+    font-size: 1rem;
+}
+
+.process-documentation strong {
+    color: var(--primary-color);
+    font-weight: 600;
+}
+
+.process-image-group {
+    margin: calc(var(--spacing-unit) * 2.5) 0;
+    display: flex;
+    justify-content: center;
+}
+
+.process-image {
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.process-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.process-image img:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.25);
+}
+
+.process-image figcaption {
+    margin-top: var(--spacing-unit);
+    text-align: center;
+    font-size: 0.95rem;
+    color: #777;
+    font-style: italic;
+    line-height: 1.6;
+}
+
+/* Responsive adjustments */
     .hero h1 {
         font-size: 2rem;
     }
