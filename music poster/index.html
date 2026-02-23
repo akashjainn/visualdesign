@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Music Poster Design - Solange Neon Bloom Tour">
+    <title>Music Poster - Visual Design Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --color-bg: #fafafa;
+            --color-surface: #ffffff;
+            --color-text: #1a1a1a;
+            --color-text-secondary: #666666;
+            --color-accent: #2a2a2a;
+            --color-border: #e0e0e0;
+            --color-hover: #f5f5f5;
+            
+            --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            --font-serif: 'Playfair Display', Georgia, serif;
+            
+            --spacing-xs: 0.5rem;
+            --spacing-sm: 1rem;
+            --spacing-md: 2rem;
+            --spacing-lg: 4rem;
+            --spacing-xl: 6rem;
+            
+            --transition-fast: 200ms cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-base: 300ms cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        html {
+            font-size: 16px;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-sans);
+            font-weight: 400;
+            line-height: 1.6;
+            color: var(--color-text);
+            background-color: var(--color-bg);
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+            transition: opacity var(--transition-fast);
+        }
+
+        a:hover {
+            opacity: 0.7;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-bottom: var(--spacing-lg);
+            font-size: 0.875rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            padding-bottom: var(--spacing-xs);
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--spacing-md);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 var(--spacing-sm);
+            }
+        }
+
+        .page-header {
+            padding: var(--spacing-xl) 0 var(--spacing-lg);
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .project-title {
+            font-family: var(--font-serif);
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 700;
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .project-subtitle {
+            font-size: 1.125rem;
+            color: var(--color-text-secondary);
+            font-weight: 300;
+        }
+
+        .main-content {
+            padding: var(--spacing-xl) 0;
+        }
+
+        .project-section {
+            margin-bottom: var(--spacing-xl);
+        }
+
+        .section-title {
+            font-family: var(--font-serif);
+            font-size: 1.75rem;
+            font-weight: 600;
+            margin-bottom: var(--spacing-md);
+            margin-top: var(--spacing-xl);
+        }
+
+        .section-title:first-child {
+            margin-top: 0;
+        }
+
+        .project-overview {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: var(--spacing-lg);
+            align-items: center;
+            margin-bottom: var(--spacing-xl);
+        }
+
+        @media (max-width: 768px) {
+            .project-overview {
+                grid-template-columns: 1fr;
+                gap: var(--spacing-md);
+            }
+        }
+
+        .overview-text {
+            font-size: 1.0625rem;
+            line-height: 1.8;
+            color: var(--color-text-secondary);
+        }
+
+        .overview-specs {
+            background-color: var(--color-surface);
+            padding: var(--spacing-md);
+            border-radius: 8px;
+            border: 1px solid var(--color-border);
+        }
+
+        .specs-item {
+            margin-bottom: var(--spacing-sm);
+            padding-bottom: var(--spacing-sm);
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .specs-item:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+
+        .specs-label {
+            font-weight: 600;
+            font-size: 0.875rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--color-text);
+            margin-bottom: var(--spacing-xs);
+        }
+
+        .specs-value {
+            color: var(--color-text-secondary);
+            font-size: 1rem;
+        }
+
+        .image-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--spacing-lg);
+            margin-bottom: var(--spacing-xl);
+        }
+
+        @media (max-width: 768px) {
+            .image-gallery {
+                grid-template-columns: 1fr;
+                gap: var(--spacing-md);
+            }
+        }
+
+        .image-card {
+            background-color: var(--color-hover);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+        }
+
+        .image-card img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .image-caption {
+            padding: var(--spacing-md);
+            background-color: var(--color-surface);
+            font-size: 0.9375rem;
+            color: var(--color-text-secondary);
+        }
+
+        .full-image {
+            margin: var(--spacing-xl) 0;
+            background-color: var(--color-hover);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        }
+
+        .full-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .description-box {
+            background-color: var(--color-surface);
+            border-left: 4px solid var(--color-accent);
+            padding: var(--spacing-md);
+            border-radius: 4px;
+            margin: var(--spacing-lg) 0;
+        }
+
+        .description-box h4 {
+            font-weight: 600;
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .description-box p {
+            color: var(--color-text-secondary);
+            line-height: 1.8;
+        }
+
+        .description-box p + p {
+            margin-top: var(--spacing-sm);
+        }
+
+        .site-footer {
+            padding: var(--spacing-lg) 0;
+            text-align: center;
+            border-top: 1px solid var(--color-border);
+            background-color: var(--color-surface);
+            margin-top: var(--spacing-xl);
+        }
+
+        .site-footer p {
+            font-size: 0.875rem;
+            color: var(--color-text-secondary);
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="page-header">
+        <div class="container">
+            <a href="../" class="back-link">← Back to Portfolio</a>
+            <h1 class="project-title">Music Poster: Solange "Neon Bloom" Tour</h1>
+            <p class="project-subtitle">Typographic hierarchy and genre-specific design for a music tour poster</p>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <!-- Project Overview -->
+            <section class="project-section">
+                <h2 class="section-title">Project Brief</h2>
+                <div class="project-overview">
+                    <div class="overview-text">
+                        <p>This project challenged me to create a digital poster for a music tour that combines visual hierarchy with typographic systems to communicate complex information—30+ concert dates and locations—in an accessible and design-forward way. The poster needed to balance aesthetic appeal with functional clarity, allowing viewers to quickly find what matters to them.</p>
+                    </div>
+                    <div class="overview-specs">
+                        <div class="specs-item">
+                            <div class="specs-label">Duration</div>
+                            <div class="specs-value">2 weeks</div>
+                        </div>
+                        <div class="specs-item">
+                            <div class="specs-label">Tools</div>
+                            <div class="specs-value">Adobe Illustrator / Photoshop</div>
+                        </div>
+                        <div class="specs-item">
+                            <div class="specs-label">Focus Areas</div>
+                            <div class="specs-value">Typography, hierarchy, composition, color</div>
+                        </div>
+                        <div class="specs-item">
+                            <div class="specs-label">Content</div>
+                            <div class="specs-value">30+ concert dates & locations</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Process -->
+            <section class="project-section">
+                <h2 class="section-title">Design Process</h2>
+                <div class="image-gallery">
+                    <div class="image-card">
+                        <img src="sp1" alt="Music Poster Process 1 - Initial concepts">
+                        <div class="image-caption">Process 1: Initial Concept & Color Exploration</div>
+                    </div>
+                    <div class="image-card">
+                        <img src="sp2" alt="Music Poster Process 2 - Typography development">
+                        <div class="image-caption">Process 2: Typography & Hierarchy Development</div>
+                    </div>
+                    <div class="image-card">
+                        <img src="sp3" alt="Music Poster Process 3 - Final refinements">
+                        <div class="image-caption">Process 3: Final Refinements & Layout</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Final Design -->
+            <section class="project-section">
+                <h2 class="section-title">Final Design</h2>
+                <div class="full-image">
+                    <img src="music-poster-final.png" alt="Solange Neon Bloom Tour Poster - Final Design">
+                </div>
+            </section>
+
+            <!-- Design Justification -->
+            <section class="project-section">
+                <h2 class="section-title">Design Thinking</h2>
+                
+                <div class="description-box">
+                    <h4>Conveying Mood & Genre</h4>
+                    <p>Bold neon greens, vibrant oranges, and striking blacks create an energetic, contemporary aesthetic that reflects Solange's experimental R&B sound and modern sensibility. The bright pops of color against the darker background convey both elegance and youthful energy.</p>
+                </div>
+
+                <div class="description-box">
+                    <h4>Information Hierarchy & Navigation</h4>
+                    <p>The poster uses a clear typographic system: the tour name "Solange" is the dominant visual element using a thick, distinctive serif treatment. Tour dates are organized into two columns (left/right hemispheres) by month, allowing viewers to quickly scan for their location. The layout prioritizes scanability—viewers can find their city without reading every date, while the overall design remains visually striking.</p>
+                </div>
+
+                <div class="description-box">
+                    <h4>Key Typographic Choices</h4>
+                    <p>The hand-drawn, slightly irregular serif letterforms for the main title convey personality and movement. Contrasting this, the tour dates use clean, geometric sans-serif typography for maximum legibility. Different text weights and positioning create rhythm and visual interest while maintaining clarity. The yellow subtitle ("The Neon Bloom Tour 2024") breaks up the composition and adds a secondary focal point.</p>
+                </div>
+
+                <div class="description-box">
+                    <h4>Composition Strategy</h4>
+                    <p>The center is anchored by the artist's portrait, with the tour name flowing across the top in a bold arc. Dates flow around the figure in organized columns, respecting the figure as the focal point while using the negative space of the corners for the strongest design elements (the large orange curved shapes). This creates both visual balance and functional hierarchy.</p>
+                </div>
+
+                <div class="description-box">
+                    <h4>Feedback Incorporated</h4>
+                    <p>After initial feedback, I refined the contrast between the title and body text—increasing the size difference to improve scanability. The color palette was adjusted to ensure dates were legible against their background, and spacing between tour locations was increased for clarity at smaller viewing sizes.</p>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="container">
+            <p>&copy; 2026 Visual Design Portfolio</p>
+        </div>
+    </footer>
+</body>
+</html>

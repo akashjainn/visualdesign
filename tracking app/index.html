@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Data Tracking App Design - Habit Tracking Mobile Interface">
+    <title>Tracking App Design - Visual Design Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --color-bg: #fafafa;
+            --color-surface: #ffffff;
+            --color-text: #1a1a1a;
+            --color-text-secondary: #666666;
+            --color-accent: #2a2a2a;
+            --color-border: #e0e0e0;
+            --color-hover: #f5f5f5;
+            
+            --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            --font-serif: 'Playfair Display', Georgia, serif;
+            
+            --spacing-xs: 0.5rem;
+            --spacing-sm: 1rem;
+            --spacing-md: 2rem;
+            --spacing-lg: 4rem;
+            --spacing-xl: 6rem;
+            
+            --transition-fast: 200ms cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-base: 300ms cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        html {
+            font-size: 16px;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-sans);
+            font-weight: 400;
+            line-height: 1.6;
+            color: var(--color-text);
+            background-color: var(--color-bg);
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+            transition: opacity var(--transition-fast);
+        }
+
+        a:hover {
+            opacity: 0.7;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-bottom: var(--spacing-lg);
+            font-size: 0.875rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            padding-bottom: var(--spacing-xs);
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--spacing-md);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 var(--spacing-sm);
+            }
+        }
+
+        .page-header {
+            padding: var(--spacing-xl) 0 var(--spacing-lg);
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .project-title {
+            font-family: var(--font-serif);
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 700;
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .project-subtitle {
+            font-size: 1.125rem;
+            color: var(--color-text-secondary);
+            font-weight: 300;
+        }
+
+        .main-content {
+            padding: var(--spacing-xl) 0;
+        }
+
+        .project-section {
+            margin-bottom: var(--spacing-xl);
+        }
+
+        .section-title {
+            font-family: var(--font-serif);
+            font-size: 1.75rem;
+            font-weight: 600;
+            margin-bottom: var(--spacing-md);
+            margin-top: var(--spacing-xl);
+        }
+
+        .section-title:first-child {
+            margin-top: 0;
+        }
+
+        .project-overview {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: var(--spacing-lg);
+            align-items: center;
+            margin-bottom: var(--spacing-xl);
+        }
+
+        @media (max-width: 768px) {
+            .project-overview {
+                grid-template-columns: 1fr;
+                gap: var(--spacing-md);
+            }
+        }
+
+        .overview-text {
+            font-size: 1.0625rem;
+            line-height: 1.8;
+            color: var(--color-text-secondary);
+        }
+
+        .overview-specs {
+            background-color: var(--color-surface);
+            padding: var(--spacing-md);
+            border-radius: 8px;
+            border: 1px solid var(--color-border);
+        }
+
+        .specs-item {
+            margin-bottom: var(--spacing-sm);
+            padding-bottom: var(--spacing-sm);
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .specs-item:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+
+        .specs-label {
+            font-weight: 600;
+            font-size: 0.875rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--color-text);
+            margin-bottom: var(--spacing-xs);
+        }
+
+        .specs-value {
+            color: var(--color-text-secondary);
+            font-size: 1rem;
+        }
+
+        .image-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: var(--spacing-lg);
+            margin-bottom: var(--spacing-xl);
+            justify-items: center;
+        }
+
+        @media (max-width: 768px) {
+            .image-gallery {
+                grid-template-columns: 1fr;
+                gap: var(--spacing-md);
+            }
+        }
+
+        .image-card {
+            background-color: var(--color-hover);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+            max-width: 280px;
+            width: 100%;
+        }
+
+        .image-card img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .image-caption {
+            padding: var(--spacing-md);
+            background-color: var(--color-surface);
+            font-size: 0.9375rem;
+            color: var(--color-text-secondary);
+            text-align: center;
+        }
+
+        .full-image {
+            margin: var(--spacing-xl) 0;
+            background-color: var(--color-hover);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            display: flex;
+            justify-content: center;
+            padding: var(--spacing-lg);
+        }
+
+        .full-image img {
+            max-width: 500px;
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .description-box {
+            background-color: var(--color-surface);
+            border-left: 4px solid var(--color-accent);
+            padding: var(--spacing-md);
+            border-radius: 4px;
+            margin: var(--spacing-lg) 0;
+        }
+
+        .description-box h4 {
+            font-weight: 600;
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .description-box p {
+            color: var(--color-text-secondary);
+            line-height: 1.8;
+        }
+
+        .description-box p + p {
+            margin-top: var(--spacing-sm);
+        }
+
+        .feature-list {
+            margin: var(--spacing-lg) 0;
+            padding-left: var(--spacing-lg);
+        }
+
+        .feature-list li {
+            margin-bottom: var(--spacing-sm);
+            color: var(--color-text-secondary);
+            line-height: 1.8;
+        }
+
+        .site-footer {
+            padding: var(--spacing-lg) 0;
+            text-align: center;
+            border-top: 1px solid var(--color-border);
+            background-color: var(--color-surface);
+            margin-top: var(--spacing-xl);
+        }
+
+        .site-footer p {
+            font-size: 0.875rem;
+            color: var(--color-text-secondary);
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="page-header">
+        <div class="container">
+            <a href="../" class="back-link">← Back to Portfolio</a>
+            <h1 class="project-title">Tracking App: Rooted Habit Tracker</h1>
+            <p class="project-subtitle">Mobile app interface design using color, form, and composition to convey habit progress</p>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <!-- Project Overview -->
+            <section class="project-section">
+                <h2 class="section-title">Project Brief</h2>
+                <div class="project-overview">
+                    <div class="overview-text">
+                        <p>"Rooted" is a habit tracking app that uses organic form language and a nature-inspired color palette to motivate users. The core metaphor is plant growth—users gain "leaves" and watch their plant grow as they complete daily habits. This project focuses on communicating complex tracking data through primarily visual means, relying on color gradients, forms, and composition to convey meaningful information at a glance.</p>
+                    </div>
+                    <div class="overview-specs">
+                        <div class="specs-item">
+                            <div class="specs-label">Duration</div>
+                            <div class="specs-value">2 weeks</div>
+                        </div>
+                        <div class="specs-item">
+                            <div class="specs-label">Platform</div>
+                            <div class="specs-value">Mobile (iOS/Android)</div>
+                        </div>
+                        <div class="specs-item">
+                            <div class="specs-label">Tools</div>
+                            <div class="specs-value">Figma</div>
+                        </div>
+                        <div class="specs-item">
+                            <div class="specs-label">Focus Areas</div>
+                            <div class="specs-value">Color, form, composition, data visualization</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Process -->
+            <section class="project-section">
+                <h2 class="section-title">Design Process</h2>
+                <div class="image-gallery">
+                    <div class="image-card">
+                        <img src="trackerp1" alt="Tracking App Process 1 - Initial concepts">
+                        <div class="image-caption">Process 1: Initial Concept & Metaphor</div>
+                    </div>
+                    <div class="image-card">
+                        <img src="trackerp2" alt="Tracking App Process 2 - Visual development">
+                        <div class="image-caption">Process 2: Form & Color Exploration</div>
+                    </div>
+                    <div class="image-card">
+                        <img src="trackerDraft" alt="Tracking App Draft - Layout refinement">
+                        <div class="image-caption">Draft: Layout & Interaction Flow</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Final Design -->
+            <section class="project-section">
+                <h2 class="section-title">Final Design</h2>
+                <div class="full-image">
+                    <img src="tree growth.png" alt="Rooted Habit Tracker - Final Design">
+                </div>
+            </section>
+
+            <!-- Design Justification -->
+            <section class="project-section">
+                <h2 class="section-title">Design Thinking</h2>
+                
+                <div class="description-box">
+                    <h4>Color as Information</h4>
+                    <p>The app uses a gradient from cool blues (representing growth potential) through lush greens (active growth) to warm beige tones (the root/base system). Habit leaves are rendered in vibrant lime green to create visual pop and emotional reward when completed. Incomplete habits appear as outlined/hollow shapes, creating an immediate visual distinction. The gradient background shifts as the user progresses, providing subtle feedback without requiring text.</p>
+                </div>
+
+                <div class="description-box">
+                    <h4>Form as Metaphor</h4>
+                    <p>Each habit is represented as a leaf—organic, varied, and growing from a central root system. The root metaphor goes deeper: the app name, the central vertical stem, and the grounding of daily practice. Different leaf shapes subtly indicate different habit categories (meditation, exercise, learning, etc.). The plant grows and branches out as users complete more habits, creating visual progress that feels organic and alive rather than mechanical.</p>
+                </div>
+
+                <div class="description-box">
+                    <h4>Composition & Information Architecture</h4>
+                    <p>The screen is organized radially around a central stem/root, with leaves arranging in natural formations as they're added. Active, completed habits are filled and positioned prominently; incomplete habits are ghosted and pushed toward the periphery. The bottom anchor—the root system and "Tap to Grow" button—keeps the user grounded and focused on the actionable next step. This vertical hierarchy (sky/growth above, earth/root below) mirrors the natural growth cycle users understand intuitively.</p>
+                </div>
+
+                <div class="description-box">
+                    <h4>Visual Feedback & Motivation</h4>
+                    <p>The app displays multiple states through color intensity and fill patterns: outline leaves (not yet started), partially filled leaves (in progress), fully filled bright green (completed). A streak counter and growth percentage communicate numerical progress while the visual plant growth delivers emotional motivation. The overall effect is that users feel they're nurturing something real.</p>
+                </div>
+
+                <div class="description-box">
+                    <h4>Feedback Incorporated</h4>
+                    <p>Initial feedback noted that the app felt too passive. I added more distinctive visual rewards: stronger color contrast for completed habits, animated growth language ("All habits completed this week!"), and subtle details like soil at the base to give the root system more presence. The leaf texture was also enhanced with crosshatch patterns to improve visual interest and legibility at mobile scale.</p>
+                </div>
+            </section>
+
+            <!-- Additional Details -->
+            <section class="project-section">
+                <h2 class="section-title">Key Features Designed</h2>
+                <ul class="feature-list">
+                    <li><strong>Main Dashboard:</strong> At-a-glance view of daily habit progress visualized through plant growth</li>
+                    <li><strong>Habit Categories:</strong> Different leaf shapes and colors distinguish meditation, exercise, learning, and wellness habits</li>
+                    <li><strong>Progress States:</strong> Visual distinction between unstarted (outlined), in-progress (partial fill), and completed (solid) habits</li>
+                    <li><strong>Weekly Streaks:</strong> Streak numbers and growth percentages provide numerical context alongside visual metaphor</li>
+                    <li><strong>Growth Animation:</strong> Plant grows and gains branches as users hit weekly and monthly milestones</li>
+                    <li><strong>Motivational Language:</strong> Contextual feedback messages ("4 habits completed this week!", "All habits complete!") celebrate user progress</li>
+                </ul>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="container">
+            <p>&copy; 2026 Visual Design Portfolio</p>
+        </div>
+    </footer>
+</body>
+</html>
