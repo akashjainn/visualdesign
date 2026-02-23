@@ -210,6 +210,12 @@
             width: 100%;
             height: auto;
             display: block;
+            cursor: pointer;
+            transition: transform var(--transition-fast);
+        }
+
+        .image-card img:hover {
+            transform: scale(1.02);
         }
 
         .image-caption {
@@ -283,6 +289,115 @@
             font-size: 0.875rem;
             color: var(--color-text-secondary);
         }
+
+        /* ===================================
+           LIGHTBOX / IMAGE MODAL
+           =================================== */
+
+        .image-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .image-modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            position: relative;
+            max-width: 90vw;
+            max-height: 90vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-image {
+            max-width: 90vw;
+            max-height: 80vh;
+            object-fit: contain;
+        }
+
+        .modal-nav-buttons {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            padding: 0 var(--spacing-sm);
+            pointer-events: none;
+        }
+
+        .modal-nav-btn {
+            background-color: rgba(255, 255, 255, 0.3);
+            color: white;
+            border: none;
+            font-size: 2rem;
+            padding: var(--spacing-sm) var(--spacing-md);
+            cursor: pointer;
+            border-radius: 4px;
+            transition: background-color var(--transition-fast);
+            pointer-events: auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+        }
+
+        .modal-nav-btn:hover {
+            background-color: rgba(255, 255, 255, 0.5);
+        }
+
+        .modal-nav-btn:disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: var(--spacing-md);
+            right: var(--spacing-md);
+            background-color: rgba(255, 255, 255, 0.3);
+            color: white;
+            border: none;
+            font-size: 2rem;
+            width: 50px;
+            height: 50px;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: background-color var(--transition-fast);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-close:hover {
+            background-color: rgba(255, 255, 255, 0.5);
+        }
+
+        .modal-caption {
+            color: white;
+            text-align: center;
+            margin-top: var(--spacing-md);
+            font-size: 0.9375rem;
+        }
+
+        .modal-counter {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.875rem;
+            margin-top: var(--spacing-xs);
+        }
     </style>
 </head>
 <body>
@@ -329,17 +444,18 @@
             <!-- Process -->
             <section class="project-section">
                 <h2 class="section-title">Design Process</h2>
-                <div class="image-gallery">
+                <p style="color: var(--color-text-secondary); margin-bottom: var(--spacing-md); font-size: 0.9375rem;">Click any image to open it in full view. Use arrow buttons or keyboard arrows to navigate through the process.</p>
+                <div class="image-gallery" id="processGallery">
                     <div class="image-card">
-                        <img src="trackerp1" alt="Tracking App Process 1 - Initial concepts">
+                        <img src="trackerp1" alt="Tracking App Process 1 - Initial concepts" class="process-image" data-caption="Process 1: Initial Concept & Metaphor">
                         <div class="image-caption">Process 1: Initial Concept & Metaphor</div>
                     </div>
                     <div class="image-card">
-                        <img src="trackerp2" alt="Tracking App Process 2 - Visual development">
+                        <img src="trackerp2" alt="Tracking App Process 2 - Visual development" class="process-image" data-caption="Process 2: Form & Color Exploration">
                         <div class="image-caption">Process 2: Form & Color Exploration</div>
                     </div>
                     <div class="image-card">
-                        <img src="trackerDraft" alt="Tracking App Draft - Layout refinement">
+                        <img src="trackerDraft" alt="Tracking App Draft - Layout refinement" class="process-image" data-caption="Draft: Layout & Interaction Flow">
                         <div class="image-caption">Draft: Layout & Interaction Flow</div>
                     </div>
                 </div>
@@ -398,11 +514,112 @@
         </div>
     </main>
 
+    <!-- Image Modal / Lightbox -->
+    <div class="image-modal" id="imageModal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal()">&times;</button>
+            <div class="modal-nav-buttons">
+                <button class="modal-nav-btn" id="prevBtn" onclick="navigateImage(-1)">&#10094;</button>
+                <button class="modal-nav-btn" id="nextBtn" onclick="navigateImage(1)">&#10095;</button>
+            </div>
+            <img id="modalImage" class="modal-image" src="" alt="">
+            <div class="modal-caption" id="modalCaption"></div>
+            <div class="modal-counter" id="modalCounter"></div>
+        </div>
+    </div>
+
     <!-- Footer -->
     <footer class="site-footer">
         <div class="container">
             <p>&copy; 2026 Visual Design Portfolio</p>
         </div>
     </footer>
+
+    <script>
+        let currentImageIndex = 0;
+        let allImages = [];
+
+        // Initialize image gallery
+        document.addEventListener('DOMContentLoaded', function() {
+            allImages = Array.from(document.querySelectorAll('.process-image'));
+            
+            // Add click listeners to all process images
+            allImages.forEach((img, index) => {
+                img.addEventListener('click', function() {
+                    openModal(index);
+                });
+            });
+        });
+
+        function openModal(index) {
+            currentImageIndex = index;
+            const modal = document.getElementById('imageModal');
+            const modalImage = document.getElementById('modalImage');
+            const modalCaption = document.getElementById('modalCaption');
+            const modalCounter = document.getElementById('modalCounter');
+            const img = allImages[index];
+
+            modalImage.src = img.src;
+            modalCaption.textContent = img.dataset.caption || img.alt;
+            modalCounter.textContent = `${index + 1} of ${allImages.length}`;
+
+            modal.classList.add('active');
+            updateNavButtons();
+
+            // Add keyboard navigation
+            document.addEventListener('keydown', handleKeyPress);
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('imageModal');
+            modal.classList.remove('active');
+            document.removeEventListener('keydown', handleKeyPress);
+        }
+
+        function navigateImage(direction) {
+            let newIndex = currentImageIndex + direction;
+
+            if (newIndex < 0 || newIndex >= allImages.length) {
+                return;
+            }
+
+            currentImageIndex = newIndex;
+            const modalImage = document.getElementById('modalImage');
+            const modalCaption = document.getElementById('modalCaption');
+            const modalCounter = document.getElementById('modalCounter');
+            const img = allImages[currentImageIndex];
+
+            modalImage.src = img.src;
+            modalCaption.textContent = img.dataset.caption || img.alt;
+            modalCounter.textContent = `${currentImageIndex + 1} of ${allImages.length}`;
+
+            updateNavButtons();
+        }
+
+        function updateNavButtons() {
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+
+            prevBtn.disabled = currentImageIndex === 0;
+            nextBtn.disabled = currentImageIndex === allImages.length - 1;
+        }
+
+        function handleKeyPress(e) {
+            if (e.key === 'ArrowLeft') {
+                navigateImage(-1);
+            } else if (e.key === 'ArrowRight') {
+                navigateImage(1);
+            } else if (e.key === 'Escape') {
+                closeModal();
+            }
+        }
+
+        // Close modal when clicking outside the content
+        document.getElementById('imageModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeModal();
+            }
+        });
+    </script>
 </body>
 </html>

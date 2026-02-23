@@ -207,6 +207,12 @@
             width: 100%;
             height: auto;
             display: block;
+            cursor: pointer;
+            transition: transform var(--transition-fast);
+        }
+
+        .image-card img:hover {
+            transform: scale(1.02);
         }
 
         .image-caption {
@@ -310,17 +316,18 @@
             <!-- Process -->
             <section class="project-section">
                 <h2 class="section-title">Design Process</h2>
-                <div class="image-gallery">
+                <p style="color: var(--color-text-secondary); margin-bottom: var(--spacing-md); font-size: 0.9375rem;">Click any image to open it in full view. Use arrow buttons or keyboard arrows to navigate through the process.</p>
+                <div class="image-gallery" id="processGallery">
                     <div class="image-card">
-                        <img src="sp1" alt="Music Poster Process 1 - Initial concepts">
+                        <img src="sp1" alt="Music Poster Process 1 - Initial concepts" class="process-image" data-caption="Process 1: Initial Concept & Color Exploration">
                         <div class="image-caption">Process 1: Initial Concept & Color Exploration</div>
                     </div>
                     <div class="image-card">
-                        <img src="sp2" alt="Music Poster Process 2 - Typography development">
+                        <img src="sp2" alt="Music Poster Process 2 - Typography development" class="process-image" data-caption="Process 2: Typography & Hierarchy Development">
                         <div class="image-caption">Process 2: Typography & Hierarchy Development</div>
                     </div>
                     <div class="image-card">
-                        <img src="sp3" alt="Music Poster Process 3 - Final refinements">
+                        <img src="sp3" alt="Music Poster Process 3 - Final refinements" class="process-image" data-caption="Process 3: Final Refinements & Layout">
                         <div class="image-caption">Process 3: Final Refinements & Layout</div>
                     </div>
                 </div>
@@ -366,11 +373,112 @@
         </div>
     </main>
 
+    <!-- Image Modal / Lightbox -->
+    <div class="image-modal" id="imageModal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal()">&times;</button>
+            <div class="modal-nav-buttons">
+                <button class="modal-nav-btn" id="prevBtn" onclick="navigateImage(-1)">&#10094;</button>
+                <button class="modal-nav-btn" id="nextBtn" onclick="navigateImage(1)">&#10095;</button>
+            </div>
+            <img id="modalImage" class="modal-image" src="" alt="">
+            <div class="modal-caption" id="modalCaption"></div>
+            <div class="modal-counter" id="modalCounter"></div>
+        </div>
+    </div>
+
     <!-- Footer -->
     <footer class="site-footer">
         <div class="container">
             <p>&copy; 2026 Visual Design Portfolio</p>
         </div>
     </footer>
+
+    <script>
+        let currentImageIndex = 0;
+        let allImages = [];
+
+        // Initialize image gallery
+        document.addEventListener('DOMContentLoaded', function() {
+            allImages = Array.from(document.querySelectorAll('.process-image'));
+            
+            // Add click listeners to all process images
+            allImages.forEach((img, index) => {
+                img.addEventListener('click', function() {
+                    openModal(index);
+                });
+            });
+        });
+
+        function openModal(index) {
+            currentImageIndex = index;
+            const modal = document.getElementById('imageModal');
+            const modalImage = document.getElementById('modalImage');
+            const modalCaption = document.getElementById('modalCaption');
+            const modalCounter = document.getElementById('modalCounter');
+            const img = allImages[index];
+
+            modalImage.src = img.src;
+            modalCaption.textContent = img.dataset.caption || img.alt;
+            modalCounter.textContent = `${index + 1} of ${allImages.length}`;
+
+            modal.classList.add('active');
+            updateNavButtons();
+
+            // Add keyboard navigation
+            document.addEventListener('keydown', handleKeyPress);
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('imageModal');
+            modal.classList.remove('active');
+            document.removeEventListener('keydown', handleKeyPress);
+        }
+
+        function navigateImage(direction) {
+            let newIndex = currentImageIndex + direction;
+
+            if (newIndex < 0 || newIndex >= allImages.length) {
+                return;
+            }
+
+            currentImageIndex = newIndex;
+            const modalImage = document.getElementById('modalImage');
+            const modalCaption = document.getElementById('modalCaption');
+            const modalCounter = document.getElementById('modalCounter');
+            const img = allImages[currentImageIndex];
+
+            modalImage.src = img.src;
+            modalCaption.textContent = img.dataset.caption || img.alt;
+            modalCounter.textContent = `${currentImageIndex + 1} of ${allImages.length}`;
+
+            updateNavButtons();
+        }
+
+        function updateNavButtons() {
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+
+            prevBtn.disabled = currentImageIndex === 0;
+            nextBtn.disabled = currentImageIndex === allImages.length - 1;
+        }
+
+        function handleKeyPress(e) {
+            if (e.key === 'ArrowLeft') {
+                navigateImage(-1);
+            } else if (e.key === 'ArrowRight') {
+                navigateImage(1);
+            } else if (e.key === 'Escape') {
+                closeModal();
+            }
+        }
+
+        // Close modal when clicking outside the content
+        document.getElementById('imageModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeModal();
+            }
+        });
+    </script>
 </body>
 </html>
